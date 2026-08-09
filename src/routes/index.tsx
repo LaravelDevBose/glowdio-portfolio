@@ -1,24 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "GlowDio — Software & Web Development Company in Bangladesh" },
+      {
+        name: "description",
+        content:
+          "GlowDio is a professional software and website development company in Dhaka, Bangladesh: web & app development, AI/ML, ecommerce, AR/VR, IT consultation, digital marketing.",
+      },
+      { property: "og:title", content: "GlowDio — Glow UR Dream" },
+      {
+        property: "og:description",
+        content:
+          "Pioneering concept, design, development and re-engineering of Digital Business. A single, true focus: making our clients successful.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <iframe
+      src="/glowdio.html"
+      title="GlowDio — Software Company Portfolio"
+      style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: 0 }}
+    />
   );
 }
