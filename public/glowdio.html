@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GlowDio — Software &amp; Web Development Company in Bangladesh</title>
+<meta name="description" content="GlowDio is a professional software and website development company in Dhaka, Bangladesh delivering web &amp; app development, AI/ML, ecommerce, AR/VR, IT consultation and digital marketing." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="GlowDio — Glow UR Dream" />
+<meta property="og:description" content="Pioneering concept, design, development and re-engineering of Digital Business. A single, true focus: making our clients successful." />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ================= DESIGN SYSTEM ================= */
+:root{
+  --navy:#0A3D5C;          /* brand deep navy (from GlowDio deck) */
+  --navy-900:#062A40;
+  --blue:#12608C;          /* professional blue */
+  --teal:#0F8B80;          /* brand accent teal */
+  --teal-soft:#9FCFC9;
+  --bg:#FFFFFF;
+  --bg-soft:#F5F8FA;
+  --line:#E4EAEF;
+  --text:#16232B;
+  --muted:#5C707C;
+  --radius:16px;
+  --shadow-sm:0 2px 10px rgba(10,61,92,.06);
+  --shadow:0 14px 40px rgba(10,61,92,.10);
+  --container:1180px;
+  --t:380ms cubic-bezier(.22,.7,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.container{width:100%;max-width:var(--container);margin:0 auto;padding:0 20px}
+section{padding:clamp(56px,7vw,104px) 0}
+.eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--teal);margin:0 0 12px}
+h1,h2,h3,h4{line-height:1.15;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.1rem,5.2vw,3.9rem);font-weight:800}
+h2{font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:800;color:var(--navy)}
+h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:700;color:var(--navy)}
+p{margin:0 0 1rem;color:var(--muted)}
+.lead{font-size:clamp(1rem,1.4vw,1.12rem)}
+.sec-head{max-width:720px;margin-bottom:clamp(28px,4vw,52px)}
+.soft{background:var(--bg-soft)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;font-weight:700;font-size:.95rem;border:1px solid transparent;cursor:pointer;transition:transform var(--t),background var(--t),color var(--t),box-shadow var(--t)}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:var(--shadow-sm)}
+.btn-primary:hover{background:var(--blue)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--navy)}
+.btn-accent{background:var(--teal);color:#fff}
+.btn-light{background:#fff;color:var(--navy)}
+.grid{display:grid;gap:clamp(18px,2.4vw,28px)}
+.two{grid-template-columns:1fr 1fr;align-items:center;gap:clamp(28px,5vw,64px)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm);transition:transform var(--t),box-shadow var(--t),border-color var(--t)}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--teal-soft)}
+.media{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--bg-soft)}
+.media img{width:100%;height:100%;object-fit:cover;transition:transform 600ms cubic-bezier(.22,.7,.3,1)}
+.media:hover img{transform:scale(1.05)}
+.ratio-4-3{aspect-ratio:4/3}
+.plus{position:absolute;font-weight:800;color:var(--teal);opacity:.18;pointer-events:none;user-select:none;animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 600ms ease,transform 600ms cubic-bezier(.22,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* ================= NAV ================= */
+header.nav{position:fixed;inset:0 0 auto 0;z-index:60;transition:background var(--t),box-shadow var(--t),padding var(--t);padding:14px 0;background:rgba(255,255,255,.72);backdrop-filter:blur(10px)}
+header.nav.scrolled{background:#fff;box-shadow:0 6px 24px rgba(10,61,92,.09)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:1.2rem;letter-spacing:-.02em}
+.brand img{width:26px;height:auto}
+.brand small{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:700}
+.menu{display:flex;align-items:center;gap:26px}
+.menu a{font-size:.92rem;font-weight:600;color:var(--text);position:relative;padding:4px 0}
+.menu a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--teal);transform:scaleX(0);transform-origin:right;transition:transform var(--t)}
+.menu a:hover::after,.menu a.active::after{transform:scaleX(1);transform-origin:left}
+.nav-cta{display:inline-flex}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);background:#fff;border-radius:12px;align-items:center;justify-content:center;cursor:pointer}
+.burger span{display:block;width:20px;height:2px;background:var(--navy);position:relative;transition:var(--t)}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--navy);transition:var(--t)}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.mobile{position:fixed;top:72px;left:0;right:0;background:#fff;border-top:1px solid var(--line);box-shadow:var(--shadow);z-index:59;max-height:0;overflow:hidden;transition:max-height 420ms ease}
+.mobile.open{max-height:80vh;overflow:auto}
+.mobile nav{display:flex;flex-direction:column;padding:10px 20px 24px}
+.mobile nav a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:600}
+.mobile .btn{margin-top:18px;justify-content:center}
+@media(max-width:940px){.menu,.nav-cta{display:none}.burger{display:flex}}
+
+/* ================= HERO ================= */
+.hero{position:relative;padding:clamp(120px,16vw,180px) 0 clamp(60px,7vw,96px);background:
+  radial-gradient(900px 480px at 88% -10%,rgba(15,139,128,.16),transparent 60%),
+  radial-gradient(700px 420px at 0% 0%,rgba(18,96,140,.12),transparent 60%),var(--bg-soft)}
+.hero .two{align-items:center}
+.hero h1 span{color:var(--teal)}
+.tagline{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.8rem;font-weight:700;color:var(--navy);letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 34px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;border-top:1px solid var(--line);padding-top:22px}
+.hero-stats b{display:block;font-size:clamp(1.4rem,2.6vw,2rem);color:var(--navy);line-height:1.1}
+.hero-stats span{font-size:.82rem;color:var(--muted);font-weight:600}
+.hero-visual{position:relative}
+.hero-visual .media{aspect-ratio:5/4}
+.hero-badge{position:absolute;left:-14px;bottom:-18px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow);font-weight:700;color:var(--navy);font-size:.9rem}
+.hero-badge em{display:block;font-style:normal;font-size:.74rem;color:var(--muted);font-weight:600}
+
+/* ================= SERVICES ================= */
+.services{grid-template-columns:repeat(3,minmax(0,1fr))}
+.svc-ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(15,139,128,.10);color:var(--teal);margin-bottom:16px}
+.svc-ico svg{width:24px;height:24px}
+.tagpill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:rgba(18,96,140,.08);border-radius:999px;padding:4px 10px;margin-top:8px}
+
+/* ================= HIGHLIGHT LIST ================= */
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.checks li{display:flex;gap:12px;align-items:flex-start;color:var(--muted);font-size:.96rem}
+.checks li::before{content:"";flex:0 0 auto;width:18px;height:18px;margin-top:4px;border-radius:6px;background:var(--teal);
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20 6L9 17l-5-5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
+  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20 6L9 17l-5-5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat}
+
+/* ================= PROJECTS ================= */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.filter{padding:.5rem 1.05rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:600;font-size:.88rem;cursor:pointer;transition:var(--t)}
+.filter:hover{border-color:var(--teal)}
+.filter[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.projects{grid-template-columns:repeat(2,minmax(0,1fr))}
+.project{display:flex;flex-direction:column;padding:0;overflow:hidden}
+.project .shot{position:relative;aspect-ratio:16/10;background:var(--bg-soft);overflow:hidden}
+.project .shot img{width:100%;height:100%;object-fit:cover;transition:transform 600ms cubic-bezier(.22,.7,.3,1)}
+.project:hover .shot img{transform:scale(1.05)}
+.project .body{padding:24px;display:flex;flex-direction:column;flex:1}
+.kicker{font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
+.stack span{font-size:.74rem;font-weight:700;color:var(--navy);background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.meta{display:grid;gap:6px;margin:0 0 16px;font-size:.86rem;color:var(--muted)}
+.meta b{color:var(--navy)}
+.linkish{margin-top:auto;align-self:flex-start;font-weight:700;color:var(--navy);border-bottom:2px solid var(--teal);padding-bottom:2px;background:none;border-top:0;border-left:0;border-right:0;cursor:pointer}
+/* slider */
+.slider{position:relative}
+.slides{display:flex;transition:transform 520ms cubic-bezier(.22,.7,.3,1)}
+.slides>figure{margin:0;min-width:100%}
+.slides figure img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.snav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--navy);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow-sm);transition:var(--t)}
+.snav:hover{background:#fff;transform:translateY(-50%) scale(1.08)}
+.snav.prev{left:10px}.snav.next{right:10px}
+.dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:7px}
+.dots button{width:8px;height:8px;padding:0;border-radius:50%;border:0;background:rgba(255,255,255,.6);cursor:pointer;transition:var(--t)}
+.dots button[aria-current="true"]{background:#fff;width:22px;border-radius:999px}
+
+/* ================= STATS ================= */
+.stats{background:linear-gradient(135deg,var(--navy-900),var(--navy) 55%,var(--blue));color:#fff;position:relative;overflow:hidden}
+.stats h2{color:#fff}
+.stats p{color:rgba(255,255,255,.72)}
+.stat-grid{grid-template-columns:repeat(4,minmax(0,1fr));text-align:center}
+.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:26px 16px}
+.stat b{display:block;font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;line-height:1}
+.stat span{font-size:.86rem;color:rgba(255,255,255,.78);font-weight:600}
+
+/* ================= TEAM ================= */
+.team{grid-template-columns:repeat(3,minmax(0,1fr))}
+.member{text-align:center}
+.member .avatar{width:132px;height:132px;border-radius:50%;margin:0 auto 18px;overflow:hidden;border:4px solid #fff;box-shadow:var(--shadow)}
+.member .avatar img{width:100%;height:100%;object-fit:cover}
+.role{color:var(--teal);font-weight:700;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.social{display:inline-flex;gap:10px;margin-top:6px}
+.social a{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--navy);transition:var(--t)}
+.social a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.social svg{width:16px;height:16px}
+
+/* ================= TESTIMONIALS ================= */
+.quote-wrap{max-width:820px;margin:0 auto;text-align:center;position:relative}
+.quotes{overflow:hidden}
+.qtrack{display:flex;transition:transform 520ms cubic-bezier(.22,.7,.3,1)}
+.qtrack blockquote{min-width:100%;margin:0;padding:0 8px}
+.qtrack p{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--text);font-weight:500}
+.who{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:18px}
+.who .av{width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800}
+.who b{display:block;color:var(--navy);font-size:.95rem}
+.who small{color:var(--muted)}
+.qctrl{display:flex;justify-content:center;gap:10px;margin-top:26px;align-items:center}
+.qctrl button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;display:grid;place-items:center;transition:var(--t)}
+.qctrl button:hover{border-color:var(--navy)}
+.qdots{display:flex;gap:7px;margin:0 8px}
+.qdots button{width:8px;height:8px;border-radius:50%;border:0;background:var(--line);padding:0}
+.qdots button[aria-current="true"]{background:var(--teal);width:22px;border-radius:999px}
+.note{font-size:.82rem;color:var(--muted);text-align:center;margin-top:22px}
+
+/* ================= COFFEE / CONTACT ================= */
+.coffee .two{gap:clamp(30px,5vw,66px)}
+.contact-list{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:16px}
+.contact-list li{display:flex;gap:14px;align-items:flex-start}
+.contact-list .ico{width:42px;height:42px;flex:0 0 auto;border-radius:12px;background:rgba(15,139,128,.10);color:var(--teal);display:grid;place-items:center}
+.contact-list svg{width:19px;height:19px}
+.contact-list b{display:block;color:var(--navy);font-size:.92rem}
+.contact-list a,.contact-list span{color:var(--muted);font-size:.95rem}
+.contact-list a:hover{color:var(--teal)}
+form.cform{display:grid;gap:14px;margin-top:26px}
+.cform label{font-size:.82rem;font-weight:700;color:var(--navy);display:block;margin-bottom:6px}
+.cform input,.cform textarea{width:100%;padding:.8rem 1rem;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff;color:var(--text);transition:var(--t)}
+.cform input:focus,.cform textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(15,139,128,.12)}
+.cform .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.formnote{font-size:.82rem;color:var(--muted);margin:0}
+
+/* ================= FOOTER ================= */
+footer{background:var(--navy-900);color:rgba(255,255,255,.74);padding:clamp(48px,6vw,76px) 0 0}
+footer h4{color:#fff;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1fr;gap:36px}
+.fgrid a:hover{color:var(--teal-soft)}
+.flinks{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:.92rem}
+.fbrand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:1.25rem;margin-bottom:12px}
+.fbrand img{width:26px}
+.fsoc{display:flex;gap:10px;margin-top:18px}
+.fsoc a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;color:#fff;transition:var(--t)}
+.fsoc a:hover{background:var(--teal);border-color:var(--teal)}
+.fsoc svg{width:17px;height:17px}
+.fbottom{margin-top:46px;border-top:1px solid rgba(255,255,255,.12);padding:20px 0;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:.85rem}
+.fbottom nav{display:flex;gap:20px}
+.totop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:0;background:var(--navy);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:var(--t);z-index:50}
+.totop.show{opacity:1;pointer-events:auto}
+.totop:hover{background:var(--teal)}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1024px){.services,.team{grid-template-columns:repeat(2,minmax(0,1fr))}.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){.two{grid-template-columns:1fr}.projects{grid-template-columns:1fr}.hero-visual{order:-1}.alt .media{order:-1}}
+@media(max-width:560px){.services,.team{grid-template-columns:1fr}.cform .row{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr 1fr}.hero-badge{position:static;margin-top:14px}}
+</style>
+</head>
+<body>
+<a class="btn btn-primary" href="#main" style="position:absolute;left:-9999px;top:0" onfocus="this.style.left='12px';this.style.top='12px';this.style.zIndex=99" onblur="this.style.left='-9999px'">Skip to content</a>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#hero" aria-label="GlowDio home">
+      <img src="/__l5e/assets-v1/c3b6daa9-79ce-491c-b807-8756c3434bc8/logo.png" alt="GlowDio candle logo" />
+      <span>GlowDio<small>Glow UR Dream</small></span>
+    </a>
+    <nav class="menu" aria-label="Primary">
+      <a href="#welcome">About</a>
+      <a href="#vision">Vision</a>
+      <a href="#mission">Mission</a>
+      <a href="#services">Services</a>
+      <a href="#work">Projects</a>
+      <a href="#team">Team</a>
+      <a href="#voices">Clients</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="#contact">Let's Talk</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+  </div>
+</header>
+<div class="mobile" id="mobileMenu">
+  <nav aria-label="Mobile">
+    <a href="#welcome">About</a>
+    <a href="#vision">Vision</a>
+    <a href="#mission">Mission</a>
+    <a href="#services">Services</a>
+    <a href="#work">Projects</a>
+    <a href="#stats">Impact</a>
+    <a href="#team">Team</a>
+    <a href="#voices">Clients</a>
+    <a href="#contact">Contact</a>
+    <a class="btn btn-primary" href="#contact">Let's Talk</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <span class="plus" style="left:4%;top:22%;font-size:70px">+</span>
+  <span class="plus" style="right:6%;bottom:12%;font-size:52px;animation-delay:1.4s">+</span>
+  <div class="container two grid">
+    <div>
+      <span class="tagline">Glow UR Dream</span>
+      <h1>We build the software that makes your <span>digital business</span> glow.</h1>
+      <p class="lead">GlowDio is a professional software and website development company based in Bangladesh, delivering highly proficient, timely delivered and cost effective software development services.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact">Let's Work Together</a>
+        <a class="btn btn-ghost" href="#work">Explore Our Work</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>6</b><span>Flagship projects in the profile</span></div>
+        <div><b>6</b><span>Service capabilities</span></div>
+        <div><b>Dhaka</b><span>Bangladesh HQ, global clients</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="media"><img src="/__l5e/assets-v1/a47f9e36-e504-4c4f-a194-2fdf93c8e574/hero-desk.jpg" alt="A creative technology workspace with a laptop, tablet, camera and notebook" /></div>
+      <div class="hero-badge">Concept → Design → Development<em>Re-engineering of Digital Business</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WELCOME ================= -->
+<section id="welcome">
+  <div class="container two grid">
+    <div class="reveal">
+      <span class="eyebrow">Welcome to GlowDio</span>
+      <h2>A software partner with a single, true focus</h2>
+      <p class="lead">GlowDio endeavours on highly proficient, timely delivered and cost effective software development services — from the first concept sketch to the re-engineering of an established digital business.</p>
+      <p>Our key market advantage is the ability to leverage a wealth of experience in this sector, a network of local and international partners, and a very competitive pricing strategy to deliver quality software solutions.</p>
+      <ul class="checks">
+        <li>Pioneering concept, design, development and re-engineering of Digital Business.</li>
+        <li>A single, true focus: making our clients successful.</li>
+        <li>Local and international partner network behind every delivery.</li>
+        <li>Competitive pricing without compromising on engineering quality.</li>
+      </ul>
+    </div>
+    <div class="media ratio-4-3 reveal"><img src="/__l5e/assets-v1/b64251ed-90ba-4e6a-8f57-9d9221bb5d79/world-map.jpg" alt="World map showing GlowDio clients across the world" loading="lazy" /></div>
+  </div>
+</section>
+
+<!-- ================= VISION ================= -->
+<section class="soft" id="vision">
+  <div class="container two grid">
+    <div class="reveal">
+      <span class="eyebrow">Our Vision</span>
+      <h2>The Future &gt;&gt;&gt; technology that solves real problems for society</h2>
+      <p class="lead">We start with a plan to solve the technological problem in our society, and to attract people into technological solutions.</p>
+      <p>Looking further ahead, we are planning for future expansion — giving a proper guideline to our young and older people about the benefits of technology, so that adoption is not limited to a single generation.</p>
+      <ul class="checks">
+        <li>Solve society's technological problems with practical products.</li>
+        <li>Attract more people towards technological solutions.</li>
+        <li>Guide both younger and older generations on the benefits of technology.</li>
+      </ul>
+    </div>
+    <div class="media ratio-4-3 reveal">
+      <!-- Free image source (Unsplash) — replaceable -->
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" alt="Futuristic network of connected lights representing GlowDio's technology vision" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- ================= MISSION ================= -->
+<section id="mission">
+  <div class="container two grid alt">
+    <div class="media ratio-4-3 reveal">
+      <!-- Free image source (Unsplash) — replaceable -->
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="A team collaborating around a table, reflecting GlowDio's mission of client success" loading="lazy" />
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Our Mission</span>
+      <h2>Making our clients successful</h2>
+      <p class="lead">Our domain is pioneering concept, design, development and re-engineering of Digital Business. Our focus is simpler still: we have a single, true focus — making our clients successful.</p>
+      <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:8px">
+        <div class="card"><h3>Domain</h3><p style="margin:0">Pioneering concept, design, development and re-engineering of Digital Business.</p></div>
+        <div class="card"><h3>Focus</h3><p style="margin:0">We have a single, true focus: making our clients successful.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="soft" id="about">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why We Are Different</span>
+      <h2>An engineering team that works across industries — and lives tech</h2>
+      <p class="lead">GlowDio is a professional software and website development company based in Bangladesh. We work across industries: from corporate houses with their product launches, AR/VR, interviews and promotions, to bloggers and influencers who use us as their video editing companion, alongside digital marketing and promotional video marketing services.</p>
+    </div>
+    <div class="grid services">
+      <div class="card reveal"><h3>Proficient delivery</h3><p>Highly proficient, timely delivered and cost effective software development services.</p></div>
+      <div class="card reveal"><h3>Wealth of experience</h3><p>A market advantage built on deep experience in the software and web development sector.</p></div>
+      <div class="card reveal"><h3>Partner network</h3><p>A network of local and international partners supporting every engagement.</p></div>
+      <div class="card reveal"><h3>Competitive pricing</h3><p>A very competitive pricing strategy that still delivers quality software solutions.</p></div>
+      <div class="card reveal"><h3>Cross-industry range</h3><p>Corporate product launches, AR/VR, interviews, promotions, influencer content and more.</p></div>
+      <div class="card reveal"><h3>We live TECH</h3><p>Technology is not a service line for us — it is how the studio thinks and works every day.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our Service</span>
+      <h2>What we do</h2>
+      <p class="lead">Six capabilities, one delivery team — the services GlowDio offers to clients in Bangladesh and abroad.</p>
+    </div>
+    <div class="grid services">
+      <article class="card reveal">
+        <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Web &amp; App Development</h3>
+        <p>End-to-end product engineering for the web and mobile — the core of our delivery, covering marketplaces, portals and management platforms.</p>
+        <span class="tagpill">Web · Mobile · Portals</span>
+      </article>
+      <article class="card reveal">
+        <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg></div>
+        <h3>AI &amp; ML</h3>
+        <p>Applying artificial intelligence and machine learning to digital business problems, so products get smarter as they grow.</p>
+        <span class="tagpill">Intelligent systems</span>
+      </article>
+      <article class="card reveal">
+        <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18l-2 12H5L3 6z"/><circle cx="9" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg></div>
+        <h3>Ecommerce</h3>
+        <p>Multivendor marketplaces and online storefronts that connect people with vendors — proven in live products such as Saliim and Dorpon.</p>
+        <span class="tagpill">Marketplace · Multivendor</span>
+      </article>
+      <article class="card reveal">
+        <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2"/></svg></div>
+        <h3>IT Consultation</h3>
+        <p>Advisory for organisations planning, modernising or re-engineering their digital business and technology stack.</p>
+        <span class="tagpill">Strategy · Re-engineering</span>
+      </article>
+      <article class="card reveal">
+        <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></div>
+        <h3>Digital Marketing</h3>
+        <p>All kinds of digital marketing service on any platform with a proper marketing strategy, plus brand promotion such as TVC/OVC to gain your brand or product more attention.</p>
+        <span class="tagpill">Strategy · TVC/OVC · Brand</span>
+      </article>
+      <article class="card reveal">
+        <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 10l6-4v12l-6-4"/></svg></div>
+        <h3>Animation &amp; Videos</h3>
+        <p>Animation and video production — from cornerstone cultural animation work to video editing for bloggers, influencers and promotional campaigns.</p>
+        <span class="tagpill">Animation · Video editing</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section class="soft" id="work">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our Work</span>
+      <h2>Projects we have built</h2>
+      <p class="lead">Marketplaces, management platforms, learning systems, AR products and animation — delivered for clients at home and across the world.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter projects by category">
+      <button class="filter" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter" data-filter="ecommerce" aria-pressed="false">E-Commerce</button>
+      <button class="filter" data-filter="web" aria-pressed="false">Web &amp; App</button>
+      <button class="filter" data-filter="arvr" aria-pressed="false">AR/VR</button>
+      <button class="filter" data-filter="animation" aria-pressed="false">Animation</button>
+    </div>
+    <div class="grid projects" id="projectGrid">
+
+      <article class="card project reveal" data-cat="ecommerce">
+        <div class="shot"><img src="/__l5e/assets-v1/ef37ca10-ee5d-4a21-bad0-d09a820cf684/proj-saliim.jpg" alt="Saliim multivendor e-commerce homepage with Ramadaan Kariim banner and category navigation" loading="lazy" /></div>
+        <div class="body">
+          <span class="kicker">E-Commerce</span>
+          <h3>Saliim — Multivendor Marketplace</h3>
+          <p>A multivendor E-commerce System that connects the people and vendors across the African sub continent.</p>
+          <p>The full fledged system helps people doing online business, with vendor onboarding, category-driven browsing and seasonal campaign merchandising built in.</p>
+          <div class="meta"><span><b>Category:</b> Web &amp; App Development</span><span><b>Region:</b> African sub continent</span><span><b>Impact:</b> Enables vendors and buyers to trade online in one full fledged system</span></div>
+          <div class="stack"><span>Multivendor commerce</span><span>Vendor management</span><span>Web platform</span></div>
+          <button class="linkish" type="button">View Case Study</button>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-cat="ecommerce">
+        <div class="shot"><img src="/__l5e/assets-v1/cf28b9fe-84a8-4243-b751-0957a0403f3a/proj-dorpon.jpg" alt="Dorpon handmade goods marketplace showing traditional Bangladeshi handicraft categories" loading="lazy" /></div>
+        <div class="body">
+          <span class="kicker">E-Commerce</span>
+          <h3>Dorpon — Handmade Goods Marketplace</h3>
+          <p>'Dorpon' — the ecommerce marketplace for unique and creative handmade goods — has launched its journey.</p>
+          <p>Dorpon (www.mydorpon.com) is launched to facilitate the buying and selling of unique traditional handicrafts. This marketplace makes shopping very easy and convenient for the handicraft enthusiasts.</p>
+          <div class="meta"><span><b>Category:</b> E-Commerce</span><span><b>Live at:</b> <a href="https://www.mydorpon.com" target="_blank" rel="noopener">www.mydorpon.com</a></span><span><b>Focus:</b> Traditional Tant-Shilpa and Nakshi handicrafts</span></div>
+          <div class="stack"><span>Marketplace</span><span>Seller center</span><span>Bilingual (EN/BN)</span></div>
+          <button class="linkish" type="button">View Case Study</button>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-cat="web">
+        <div class="shot"><img src="/__l5e/assets-v1/cde62068-1beb-405a-890d-13617f65b674/proj-mgmt.jpg" alt="Alumni portal login interface of the management system built for a leading company in Bangladesh" loading="lazy" /></div>
+        <div class="body">
+          <span class="kicker">Web &amp; App</span>
+          <h3>Management System &amp; Alumni Portal</h3>
+          <p>A management system for a leading company in Bangladesh.</p>
+          <p>The management and communication across the company is facilitated in this work, with an alumni portal and secure login as part of the delivered platform.</p>
+          <div class="meta"><span><b>Client:</b> A leading company in Bangladesh</span><span><b>Impact:</b> Company-wide management and communication in one place</span></div>
+          <div class="stack"><span>Enterprise portal</span><span>Authentication</span><span>Internal communication</span></div>
+          <button class="linkish" type="button">View Case Study</button>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-cat="web">
+        <div class="shot"><img src="/__l5e/assets-v1/7644fe53-cc76-47c9-88b0-97de5453a776/proj-lms.jpg" alt="Learning Management System homepage with Bengali headline and children learning on digital devices" loading="lazy" /></div>
+        <div class="body">
+          <span class="kicker">Web &amp; App</span>
+          <h3>Learning Management System</h3>
+          <p>A feature-rich LMS that provides world-class learning solutions that empower organizations to meet education and workplace learning needs.</p>
+          <p>Learners browse courses by their own interest, sign in to track progress, and search the catalogue — presented in Bangla for local learners.</p>
+          <div class="meta"><span><b>Category:</b> Web &amp; App Development</span><span><b>Key features:</b> Courses, FAQ, search, sign in / sign up</span></div>
+          <div class="stack"><span>LMS</span><span>Course catalogue</span><span>Bangla UI</span></div>
+          <button class="linkish" type="button">View Case Study</button>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-cat="arvr">
+        <div class="shot"><img src="/__l5e/assets-v1/32e61049-97cf-45d5-81a4-772adefbec76/proj-ar.jpg" alt="MagicSign AR application interface showing hand sign targets and start menu" loading="lazy" /></div>
+        <div class="body">
+          <span class="kicker">Augmented / Virtual Reality</span>
+          <h3>MagicSign AR</h3>
+          <p>MagicSign AR app using the hand sign as a target picture, so people having disabilities can use this app as their platform for English language learning.</p>
+          <p>This app is highly helpful for the people those who are unable to talk and wish to learn sign language.</p>
+          <div class="meta"><span><b>Category:</b> AR/VR</span><span><b>Impact:</b> Accessible English and sign language learning</span></div>
+          <div class="stack"><span>Augmented Reality</span><span>Image targets</span><span>Mobile app</span></div>
+          <button class="linkish" type="button">View Case Study</button>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-cat="animation">
+        <div class="slider shot" data-slider>
+          <div class="slides">
+            <figure><img src="/__l5e/assets-v1/48f8ea6b-d827-4a49-8472-9b6fecf6744a/proj-animation.jpg" alt="21st February International Mother Language Day animation project artwork" loading="lazy" /></figure>
+            <!-- Free image source (Unsplash) — replaceable -->
+            <figure><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80" alt="Animator working on motion design frames at a studio desk" loading="lazy" /></figure>
+            <!-- Free image source (Unsplash) — replaceable -->
+            <figure><img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=1200&q=80" alt="Video editing timeline on a monitor during post production" loading="lazy" /></figure>
+          </div>
+          <button class="snav prev" type="button" aria-label="Previous image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="snav next" type="button" aria-label="Next image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="dots" role="tablist" aria-label="Project images"></div>
+        </div>
+        <div class="body">
+          <span class="kicker">Animation</span>
+          <h3>21<sup>st</sup> February — Mother Language Day Animation</h3>
+          <p>One of our cornerstone works was an animation project that has represented the 21st February, International Mother Language Day for a Singaporean client.</p>
+          <p>The piece carried a culturally significant story to an international audience through animation and motion design.</p>
+          <div class="meta"><span><b>Client:</b> Singaporean client</span><span><b>Category:</b> Animation &amp; Videos</span><span><b>Recognition:</b> A cornerstone work in GlowDio's portfolio</span></div>
+          <div class="stack"><span>Animation</span><span>Storytelling</span><span>Motion design</span></div>
+          <button class="linkish" type="button">View Case Study</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats" id="stats">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow" style="color:var(--teal-soft)">Our Work In Numbers</span>
+      <h2>Clients across the world</h2>
+      <p class="lead">Figures below reflect what is documented in the GlowDio company profile — nothing more, nothing less.</p>
+    </div>
+    <div class="grid stat-grid">
+      <div class="stat reveal"><b data-count="6">0</b><span>Flagship projects showcased</span></div>
+      <div class="stat reveal"><b data-count="6">0</b><span>Core service capabilities</span></div>
+      <div class="stat reveal"><b data-count="3">0</b><span>Leadership team members</span></div>
+      <div class="stat reveal"><b data-count="2" data-suffix="+">0</b><span>Continents served</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section id="team">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our Teams</span>
+      <h2>Meet the people behind GlowDio</h2>
+      <p class="lead">The leadership team listed in the company profile.</p>
+    </div>
+    <div class="grid team">
+      <article class="card member reveal">
+        <div class="avatar"><img src="/__l5e/assets-v1/52a8a84f-105e-4f87-a0a5-f0fdae2ef0f5/team-ceo.jpg" alt="Portrait of Raihan Shahriar, CEO of GlowDio" loading="lazy" /></div>
+        <h3>Raihan Shahriar</h3>
+        <div class="role">CEO</div>
+        <p>Leads GlowDio's direction and client partnerships, holding the company to its single, true focus: making clients successful.</p>
+        <div class="social"><a href="https://www.linkedin.com/company/glowdio/" target="_blank" rel="noopener" aria-label="GlowDio on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"/></svg></a></div>
+      </article>
+      <article class="card member reveal">
+        <div class="avatar"><img src="/__l5e/assets-v1/00444e99-de4d-4709-a76c-4b7e16681105/team-cto.jpg" alt="Portrait of Ashfaqul Islam Tonmoy, CTO of GlowDio" loading="lazy" /></div>
+        <h3>Ashfaqul Islam Tonmoy</h3>
+        <div class="role">CTO</div>
+        <p>Owns the technology side of concept, design, development and re-engineering across GlowDio's product and AR/VR work.</p>
+        <div class="social"><a href="https://www.linkedin.com/company/glowdio/" target="_blank" rel="noopener" aria-label="GlowDio on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"/></svg></a></div>
+      </article>
+      <article class="card member reveal">
+        <div class="avatar"><img src="/__l5e/assets-v1/d469e630-f0a8-4bcf-8467-e051861d520a/team-coo.jpg" alt="Portrait of Minhazur Rahman TehZeeb, COO of GlowDio" loading="lazy" /></div>
+        <h3>Minhazur Rahman TehZeeb</h3>
+        <div class="role">COO</div>
+        <p>Runs delivery and operations so work stays highly proficient, timely delivered and cost effective.</p>
+        <div class="social"><a href="https://www.linkedin.com/company/glowdio/" target="_blank" rel="noopener" aria-label="GlowDio on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"/></svg></a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLIENT VOICES ================= -->
+<section class="soft" id="voices">
+  <div class="container">
+    <div class="sec-head reveal" style="margin-inline:auto;text-align:center">
+      <span class="eyebrow">What Our Clients Say</span>
+      <h2>Work that speaks for our clients</h2>
+    </div>
+    <div class="quote-wrap reveal">
+      <div class="quotes" id="quotes">
+        <div class="qtrack" id="qtrack">
+          <blockquote>
+            <p>“A multivendor E-commerce System that connects the people and vendors across African sub continent. The full fledged system helps people doing online business.”</p>
+            <div class="who"><span class="av" aria-hidden="true">S</span><span><b>Saliim</b><small>Multivendor marketplace · African sub continent</small></span></div>
+          </blockquote>
+          <blockquote>
+            <p>“One of our cornerstone works was an animation project that has represented the 21st February, International Mother Language Day.”</p>
+            <div class="who"><span class="av" aria-hidden="true">21</span><span><b>Singaporean client</b><small>Mother Language Day animation</small></span></div>
+          </blockquote>
+          <blockquote>
+            <p>“The management and communication across the company is facilitated in this work.”</p>
+            <div class="who"><span class="av" aria-hidden="true">M</span><span><b>A leading company in Bangladesh</b><small>Management system &amp; alumni portal</small></span></div>
+          </blockquote>
+        </div>
+      </div>
+      <div class="qctrl">
+        <button type="button" id="qprev" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <div class="qdots" id="qdots" role="tablist" aria-label="Client stories"></div>
+        <button type="button" id="qnext" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <p class="note">These are project statements taken from the GlowDio company profile. Named client reviews will appear here once collected — <a href="#contact" style="color:var(--teal);font-weight:700">[Client Testimonial]</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COFFEE / CONTACT ================= -->
+<section class="coffee" id="contact">
+  <div class="container two grid">
+    <div class="reveal">
+      <span class="eyebrow">Contacts</span>
+      <h2>Let's Have a Cup of Coffee ☕</h2>
+      <p class="lead">Have an idea, a challenge, or a project in mind? Let's sit down, talk about it, and turn your idea into something meaningful.</p>
+      <ul class="contact-list">
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></span><span><b>Phone</b><a href="tel:+8801515600336">01515600336</a></span></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg></span><span><b>Email</b><a href="mailto:glowdiobd@gmail.com">glowdiobd@gmail.com</a></span></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span><b>Address</b><span>69/C (6th floor), Green Road, Panthapath, Dhaka-1205</span></span></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18a15 15 0 010-18z"/></svg></span><span><b>Website</b><a href="https://www.glowdio.com/" target="_blank" rel="noopener">www.glowdio.com</a></span></li>
+      </ul>
+      <form class="cform" id="cform" novalidate>
+        <div class="row">
+          <div><label for="fname">Your name</label><input id="fname" name="name" type="text" required placeholder="Jane Doe" /></div>
+          <div><label for="femail">Email</label><input id="femail" name="email" type="email" required placeholder="you@company.com" /></div>
+        </div>
+        <div><label for="fmsg">What's on your mind?</label><textarea id="fmsg" name="message" rows="4" required placeholder="Tell us about your idea or challenge"></textarea></div>
+        <button class="btn btn-primary" type="submit">Let's Talk</button>
+        <p class="formnote" id="formnote" role="status">This form is a front-end demo — please email <a href="mailto:glowdiobd@gmail.com" style="color:var(--teal);font-weight:700">glowdiobd@gmail.com</a> to reach us directly.</p>
+      </form>
+    </div>
+    <div class="media reveal" style="aspect-ratio:4/5"><img src="/__l5e/assets-v1/0063d0ad-4cd3-4ffd-ba0f-da0778f299a4/coffee.jpg" alt="A blue cup of coffee with latte art on a wooden table, inviting a conversation with GlowDio" loading="lazy" /></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div>
+        <div class="fbrand"><img src="/__l5e/assets-v1/c3b6daa9-79ce-491c-b807-8756c3434bc8/logo.png" alt="GlowDio logo" /> GlowDio</div>
+        <p style="color:var(--teal-soft);font-weight:700;margin:0 0 10px">Glow UR Dream</p>
+        <p style="color:rgba(255,255,255,.7)">A professional software and website development company based in Bangladesh, delivering highly proficient, timely delivered and cost effective software development services.</p>
+        <div class="fsoc">
+          <a href="https://www.facebook.com/glowdio" target="_blank" rel="noopener" aria-label="GlowDio on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.55-1.5H16.7V4.6A21 21 0 0014.3 4.5c-2.4 0-4 1.45-4 4.1v2.3H7.6V14h2.7v8z"/></svg></a>
+          <a href="https://www.linkedin.com/company/glowdio/" target="_blank" rel="noopener" aria-label="GlowDio on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"/></svg></a>
+          <a href="https://www.twitter.com/dio_glow" target="_blank" rel="noopener" aria-label="GlowDio on X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3l-6.6 7.6L21.8 21h-5.9l-4.2-5.5L6.7 21H3.6l7.1-8.1L2.6 3h6l3.8 5 5.1-5z"/></svg></a>
+          <a href="mailto:glowdiobd@gmail.com" aria-label="Email GlowDio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul class="flinks">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#welcome">About</a></li>
+          <li><a href="#vision">Vision</a></li>
+          <li><a href="#mission">Mission</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Projects</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#voices">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="flinks">
+          <li>69/C (6th floor), Green Road,<br/>Panthapath, Dhaka-1205</li>
+          <li><a href="mailto:glowdiobd@gmail.com">glowdiobd@gmail.com</a></li>
+          <li><a href="tel:+8801515600336">01515600336</a></li>
+          <li><a href="https://www.glowdio.com/" target="_blank" rel="noopener">www.glowdio.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul class="flinks">
+          <li><a href="#services">Web &amp; App Development</a></li>
+          <li><a href="#services">AI &amp; ML</a></li>
+          <li><a href="#services">Ecommerce</a></li>
+          <li><a href="#services">IT Consultation</a></li>
+          <li><a href="#services">Digital Marketing</a></li>
+          <li><a href="#services">Animation &amp; Videos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbottom">
+      <span>© <span id="year">2026</span> GlowDio. All Rights Reserved.</span>
+      <nav aria-label="Legal"><a href="#contact">Privacy Policy</a><a href="#contact">Terms &amp; Conditions</a></nav>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+  /* year */
+  $("#year").textContent=new Date().getFullYear();
+
+  /* nav scroll state + back to top */
+  var nav=$("#nav"),totop=$("#totop");
+  function onScroll(){
+    var y=window.scrollY||window.pageYOffset;
+    nav.classList.toggle("scrolled",y>20);
+    totop.classList.toggle("show",y>600);
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+  totop.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
+
+  /* mobile menu */
+  var burger=$("#burger"),mobile=$("#mobileMenu");
+  function setMenu(open){
+    burger.setAttribute("aria-expanded",String(open));
+    burger.setAttribute("aria-label",open?"Close menu":"Open menu");
+    mobile.classList.toggle("open",open);
+  }
+  burger.addEventListener("click",function(){setMenu(burger.getAttribute("aria-expanded")!=="true")});
+  $$("#mobileMenu a").forEach(function(a){a.addEventListener("click",function(){setMenu(false)})});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")setMenu(false)});
+
+  /* reveal on scroll */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}
+    });
+  },{threshold:.15,rootMargin:"0px 0px -40px 0px"});
+  $$(".reveal").forEach(function(el,i){el.style.transitionDelay=(i%3)*70+"ms";io.observe(el)});
+
+  /* active nav link */
+  var sections=$$("main section[id]");
+  var spy=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      var id=en.target.id;
+      $$(".menu a").forEach(function(a){a.classList.toggle("active",a.getAttribute("href")==="#"+id)});
+    });
+  },{rootMargin:"-45% 0px -50% 0px"});
+  sections.forEach(function(s){spy.observe(s)});
+
+  /* count up stats */
+  var counted=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      var el=en.target,target=parseFloat(el.getAttribute("data-count")),suffix=el.getAttribute("data-suffix")||"",start=null,dur=1200;
+      function step(ts){
+        if(!start)start=ts;
+        var p=Math.min((ts-start)/dur,1),eased=1-Math.pow(1-p,3);
+        el.textContent=Math.round(target*eased)+suffix;
+        if(p<1)requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);counted.unobserve(el);
+    });
+  },{threshold:.5});
+  $$("[data-count]").forEach(function(el){counted.observe(el)});
+
+  /* project filters */
+  var cards=$$("#projectGrid .project");
+  $$(".filter").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var f=btn.getAttribute("data-filter");
+      $$(".filter").forEach(function(b){b.setAttribute("aria-pressed",String(b===btn))});
+      cards.forEach(function(c){
+        var show=f==="all"||c.getAttribute("data-cat")===f;
+        c.style.display=show?"":"none";
+      });
+    });
+  });
+
+  /* project image sliders */
+  $$("[data-slider]").forEach(function(sl){
+    var track=$(".slides",sl),figs=$$("figure",track),dots=$(".dots",sl),i=0;
+    figs.forEach(function(_,n){
+      var d=document.createElement("button");
+      d.type="button";d.setAttribute("role","tab");d.setAttribute("aria-label","Image "+(n+1));
+      d.addEventListener("click",function(){go(n)});dots.appendChild(d);
+    });
+    function go(n){
+      i=(n+figs.length)%figs.length;
+      track.style.transform="translateX("+(-i*100)+"%)";
+      $$("button",dots).forEach(function(d,k){d.setAttribute("aria-current",String(k===i))});
+    }
+    $(".prev",sl).addEventListener("click",function(){go(i-1)});
+    $(".next",sl).addEventListener("click",function(){go(i+1)});
+    go(0);
+  });
+
+  /* testimonial slider */
+  var qtrack=$("#qtrack"),qs=$$("blockquote",qtrack),qdots=$("#qdots"),qi=0,timer;
+  qs.forEach(function(_,n){
+    var d=document.createElement("button");
+    d.type="button";d.setAttribute("role","tab");d.setAttribute("aria-label","Story "+(n+1));
+    d.addEventListener("click",function(){qgo(n);restart()});qdots.appendChild(d);
+  });
+  function qgo(n){
+    qi=(n+qs.length)%qs.length;
+    qtrack.style.transform="translateX("+(-qi*100)+"%)";
+    $$("button",qdots).forEach(function(d,k){d.setAttribute("aria-current",String(k===qi))});
+  }
+  function restart(){clearInterval(timer);timer=setInterval(function(){qgo(qi+1)},6000)}
+  $("#qprev").addEventListener("click",function(){qgo(qi-1);restart()});
+  $("#qnext").addEventListener("click",function(){qgo(qi+1);restart()});
+  $("#quotes").addEventListener("mouseenter",function(){clearInterval(timer)});
+  $("#quotes").addEventListener("mouseleave",restart);
+  qgo(0);restart();
+
+  /* case study buttons scroll to contact */
+  $$(".linkish").forEach(function(b){b.addEventListener("click",function(){document.getElementById("contact").scrollIntoView({behavior:"smooth"})})});
+
+  /* contact form (front-end only) */
+  var form=$("#cform"),note=$("#formnote");
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var name=$("#fname").value.trim(),email=$("#femail").value.trim(),msg=$("#fmsg").value.trim();
+    if(!name||!email||!msg||email.indexOf("@")<0){
+      note.textContent="Please add your name, a valid email and a short message.";
+      note.style.color="#b3261e";return;
+    }
+    window.location.href="mailto:glowdiobd@gmail.com?subject="+encodeURIComponent("Project enquiry from "+name)+"&body="+encodeURIComponent(msg+"\n\n— "+name+" ("+email+")");
+    note.textContent="Thanks, "+name+" — opening your email app so you can send this to GlowDio.";
+    note.style.color="var(--teal)";
+  });
+})();
+</script>
+</body>
+</html>
